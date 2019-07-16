@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form id="reg">
+    <h1>Bank Details</h1>
+    <h:outputLabel>Name</h:outputLabel>
+    <h:inputText id="BankName" value="#{bankDetails.name}"/>
+
+    <h:outputLabel>AccountNumber</h:outputLabel>
+    <h:inputText id="accountNumber" value="#{bankDetails.accountNumber}"/>
+
+    <h:outputLabel>Branch Code</h:outputLabel>
+    <h:inputText id="branchCode" value="#{bankDetails.branchCode}"/>
+
+    <h:commandButton id="register" value="Submit" action="#{bankDetails.redirect}" />
+
+        <!---DELETE ADDRESS ACCORDING TO ID-->
+        <h:inputText id="id" value="#{bankDetails.id}"/>
+        <h:commandButton id="delete" value="DELETE" action="#{bankDetailsDAO.deleteBankDetails(bankDetails.id)}" />
+
+        <!--ADD RECORD VALUE TO DB-->
+        <h:commandButton id="save" value="Submit" action="#{bankDetails.redirect}" />
+
+        <!--Read Record with ID-->
+        <h:commandButton id="read" value="READ" action="#{bankDetailsDAO.getBankDetailsById(bankDetails.id)}"/>
+
+        <!--Update the customer-->
+        <h:commandButton id="update" value="UPDATE" action="#{bankDetails.updateBankDetailsRecord}"/>
+
+    </h:form>
+</f:view>
+</html>
+
+

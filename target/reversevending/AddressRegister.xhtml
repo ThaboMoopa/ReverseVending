@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+
+    <title>Account Address!</title>
+
+    <!--    <meta charset="utf-8" />-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="" />
+    <link type="text/css" rel="stylesheet" href="resources/css/sb-admin-2.css?ln=css"/>
+    <link type="text/css" rel="stylesheet" href="resources/css/sb-admin-2.css?ln=css"/>
+    <link type="text/css" href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"/>
+    <link href="resources/js/googleFonts.scss" rel="stylesheet" />
+
+</h:head>
+<h:body class="bg-gradient-primary">
+    <div class="container">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <div class="row">
+                    <h:graphicImage class="col-lg-5 d-none d-lg-block bg-register-image" id="profile" value="resources/img/address.jpg" />
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Account Address!</h1>
+                            </div>
+                            <h:form class="user">
+                                <div id="grid">
+                                    <h:messages class="text-monospace text-danger text-center"  id="errorsInAddress" />
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <h:inputText class="form-control form-control-user" validatorMessage="City name is invalid." required="true" requiredMessage="City required." a:placeholder="city" id="city" value="#{addressBean.city}">
+                                                <f:validateRegex pattern="[\w\.-]*[a-zA-Z_ ]*$"/>
+                                            </h:inputText>
+                                        </div>
+<!--                                        <div class="col-sm-6>">-->
+                                            <h:selectOneMenu id="hard-dropdown" class="form-control form-control-user" value="#{addressBean.province}">
+                                                <f:selectItem itemValue="Eastern Cape" itemLabel="Eastern Cape"/>
+                                                <f:selectItem itemValue="Free State" itemLabel="Free State"/>
+                                                <f:selectItem itemValue="Gauteng" itemLabel="Gauteng"/>
+                                                <f:selectItem itemValue="Kwa-Zulu Natal" itemLabel="Kwa-Zulu Natal"/>
+                                                <f:selectItem itemValue="Limpopo" itemLabel="Limpopo"/>
+                                                <f:selectItem itemValue="Mpumalanga" itemLabel="Mpumalanga"/>
+                                                <f:selectItem itemValue="North West" itemLabel="North West"/>
+                                                <f:selectItem itemValue="Northern West" itemLabel="Northern West"/>
+                                                <f:selectItem itemValue="Western Cape" itemLabel="Western Cape"/>
+                                            </h:selectOneMenu>
+<!--                                        </div>-->
+                                    </div>
+                                    <div class="form-group">
+                                        <h:inputText class="form-control form-control-user" validatorMessage="Street name is invalid." required="true" requiredMessage="Street is required." a:placeholder="street" id="street" value="#{addressBean.street}">
+                                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z_ ]*$"/>
+                                        </h:inputText>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <h:inputText class="form-control form-control-user" required="true" requiredMessage="House/Unit No. is required." validatorMessage="House/Unit must be a number." a:placeholder="House/Unit Number" id="houseNumber" value="#{addressBean.houseNumber}">
+                                                <f:validateLength minimum="1" />
+<!--                                                <f:validateRegex pattern="[0-9]+"/>-->
+                                            </h:inputText>
+                                        </div>
+                                        <div class="col-sm-6">
+                                                <h:inputText class="form-control form-control-user" required="true" requiredMessage="Postal code no. is required." validatorMessage="Postal Code must 4 be a number." a:placeholder="Postal Code Number" id="postalcode" value="#{addressBean.postalCode}">
+                                                    <f:validateLength minimum="4" maximum="4"/>
+<!--                                                    <f:validateRegex pattern="[0-9]+"/>-->
+                                                </h:inputText>
+                                        </div>
+                                    </div>
+                                    <h:commandButton class="btn btn-primary btn-user btn-block" process="@all" update="@grid" id="save" value="Add Address" action="#{addressBean.redirect}" />
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <h:outputScript library="vendor" name="/jquery/jquery.min.js"/>
+    <h:outputScript library="vendor" name="/bootstrap/js/bootstrap.bundle.min.js"/>
+
+    <!-- Core plugin JavaScript-->
+    <h:outputScript library="vendor" name="/jquery-easing/jquery.easing.min.js"/>
+
+    <!-- Custom scripts for all pages-->
+    <h:outputScript library="js" name="sb-admin-2.min.js"/>
+
+</h:body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form id="reg">
+        <h1>Register Address</h1>
+        <h:panelGrid columns="2" columnClasses="titleCell">
+        <h:outputLabel>City</h:outputLabel>
+        <h:inputText id="city" name="city" value="#{address.city}"/>
+
+        <h:outputText>House Number</h:outputText>
+        <h:inputText id="houseNumber" value="#{address.houseNumber}"/>
+
+        <h:outputLabel>Postal Code</h:outputLabel>
+        <h:inputText id="postalCode" value="#{address.postalCode}"/>
+
+        <h:outputLabel>Province</h:outputLabel>
+        <h:inputText id="Province" value="#{address.province}"/>
+            <h:selectOneMenu id="hard-dropdown" class="form-control form-control-user" value="#{address.province}">-->
+                                                            <f:selectItem itemValue="1" itemLabel="Eastern Cape"/>
+                                                            <f:selectItem itemValue="2" itemLabel="Free State"/>
+                                                            <f:selectItem itemValue="3" itemLabel="Gauteng"/>
+                                                            <f:selectItem itemValue="4" itemLabel="Kwa-Zulu Natal"/>
+                                                            <f:selectItem itemValue="5" itemLabel="Limpopo"/>
+                                                            <f:selectItem itemValue="6" itemLabel="Mpumalanga"/>
+                                                            <f:selectItem itemValue="7" itemLabel="North West"/>
+                                                            <f:selectItem itemValue="8" itemLabel="Northern West"/>
+                                                            <f:selectItem itemValue="9" itemLabel="Western Cape"/>
+                                                        </h:selectOneMenu>
+
+        <h:outputLabel>Street</h:outputLabel>
+        <h:inputText id="Street" value="#{address.street}"/>
+
+        <h:commandButton id="register" value="Submit" action="#{address.redirect}" />
+
+            <!---DELETE ADDRESS ACCORDING TO ID-->
+            <h:inputText id="id" value="#{address.id}"/>
+            <h:commandButton id="delete" value="DELETE" action="#{addressDAO.deleteAddress(address.id)}" />
+
+            <!--ADD RECORD VALUE TO DB-->
+            <h:commandButton id="save" value="Submit" action="#{address.redirect}" />
+
+            <!--Read Record with ID-->
+            <h:commandButton id="read" value="READ" action="#{addressDAO.getAddressById(address.id)}"/>
+
+            <!--Update the customer-->
+            <h:commandButton id="update" value="UPDATE" action="#{address.updateAddressRecord}"/>
+
+
+    </h:panelGrid>
+    </h:form>
+</f:view>
+</html>

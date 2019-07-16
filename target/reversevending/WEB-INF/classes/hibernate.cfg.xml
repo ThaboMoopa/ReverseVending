@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/modulepostgres</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">mysqlmysql</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.hbm2ddl.auto">create-drop</property>
+        <property name="show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <property name="hibernate.connection.pool_size">5</property>
+        <property name="hibernate.c3p0.min_size">50</property>
+        <property name="hibernate.c3p0.max_size">800</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+        <property name="hibernate.jdbc.batch_size">10</property>
+        <property name="hibernate.c3p0.timeout">300</property>
+        <property name="hibernate.c3p0.idle_test_period">3000</property>
+        <property name="hibernate.c3p0.testConnectionOnCheckout">true</property>
+        <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
+        <!--        <property name="transaction.auto_close_session">true</property>-->
+        <!--		-->
+        <!-- <property name="hibernate.connection.pool_size">5</property>
+        <property name="hibernate.jdbc.batch_size">10</property>
+        <property name="hibernate.connection.provider_class">proxool</property>
+        <property name="hibernate.proxool.properties">pool-one.properties</property>
+        <property name="hibernate.proxool.pool_alias">pool-one</property> -->
+
+        <!-- <property name="hibernate.cache.region_prefix">hibernate.test</property>
+        <property name="cache.use_query_cache">true</property>
+        <property name="cache.use_second_level_cache">true</property>
+        <property name="cache.use_structured_entries">true</property>
+        <property name="cache.region.factory_class">org.hibernate.cache.EhCacheRegionFactory</property>
+        <property name="net.sf.ehcache.configurationResourceName">file:///[PATH]/unmanaged-jpa/src/main/resources/ehcache.xml</property> -->
+
+        <!-- <property name="hibernate.cache.region_prefix">hibernate.test</property>
+		<property name="cache.use_query_cache">true</property>
+        <property name="cache.use_second_level_cache">true</property>
+        <property name="cache.use_structured_entries">true</property>
+        <property name="cache.region.factory_class">org.hibernate.cache.infinispan.InfinispanRegionFactory</property> -->
+        <!--        <mapping resource="customer.hbm.xml"/>-->
+        <!--        <mapping resource="address.hbm.xml"/>-->
+        <!--        <mapping resource="bankDetails.hbm.xml"/>-->
+        <!--        <mapping resource="transactions.hbm.xml"/>-->
+        <!--        <mapping resource="transactionLine.hbm.xml"/>-->
+        <!--        <mapping resource="products.hbm.xml"/>-->
+
+        <mapping class="com.reversevending.domain.Address"/>
+        <mapping class="com.reversevending.domain.BankDetails" />
+        <mapping class="com.reversevending.domain.Transactions"/>
+        <mapping class="com.reversevending.domain.TransactionLine"/>
+        <mapping class="com.reversevending.domain.Products"/>
+        <mapping class="com.reversevending.domain.Customer"/>
+        <!--        <mapping class="com.reversevending.databaseOperationsDAO.CustomerDAO"/>-->
+        <!--        <mapping class="com.reversevending.databaseOperationsDAO.ProductsDAO"/>-->
+        <!--        <mapping class="com.reversevending.databaseOperationsDAO.TransactionLineDAO"/>-->
+        <!--        <mapping class="com.reversevending.databaseOperationsDAO.TransactionsDAO"/>-->
+        <!--        <mapping class="com.reversevending.databaseOperationsDAO.AddressDAO"/>-->
+        <!--        <mapping class="com.reversevending.databaseOperationsDAO.BankDetailsDAO"/>-->
+
+
+    </session-factory>
+
+</hibernate-configuration>

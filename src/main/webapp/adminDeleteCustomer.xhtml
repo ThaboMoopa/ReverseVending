@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+
+    <title>Delete Account</title>
+
+    <!--    <meta charset="utf-8" />-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="" />
+    <link type="text/css" rel="stylesheet" href="resources/css/sb-admin-2.css?ln=css"/>
+    <link type="text/css" rel="stylesheet" href="resources/css/sb-admin-2.css?ln=css"/>
+    <link type="text/css" href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"/>
+    <link href="resources/js/googleFonts.scss" rel="stylesheet" />
+
+</h:head>
+<h:body class="bg-gradient-primary">
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Delete Account!</h1>
+                            </div>
+                            <h:form class="user">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <h:inputText class="form-control form-control-user" a:placeholder="Enter account id" id="id" value="#{customerBean.id}">
+                                            <p:ajax event="keyup" update="name,surname,email,contact,password" ></p:ajax>
+                                        </h:inputText>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <h:inputText class="form-control form-control-user" readonly="true" a:placeholder="First Name" id="name" value="#{customerDAO.getById(customerBean.id).get(0).name}" />
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h:inputText class="form-control form-control-user" readonly="true"  a:placeholder="Surname" id="surname" value="#{customerDAO.getById(customerBean.id).get(0).surname}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <!--                                <div class="form-group">-->
+<!--                                    <div class="col-sm-6 mb-3 mb-sm-0">-->
+                                        <h:inputText class="form-control form-control-user" readonly="true" a:placeholder="email" id="email" value="#{customerDAO.getById(customerBean.id).get(0).email}" />
+<!--                                    </div>-->
+<!--                                    <div class="col-sm-6">-->
+<!--                                        <h:outputText class="h6 text-gray-900 mb-4">Image upload</h:outputText><p:fileUpload value="" mode="simple"/>-->
+<!--                                    </div>-->
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <h:inputText class="form-control form-control-user" readonly="true" a:placeholder="contact" id="contact" value="#{customerDAO.getById(customerBean.id).get(0).contact}" />
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h:inputSecret class="form-control form-control-user" readonly="true" a:placeholder="password" id="password" value="#{customerDAO.getById(customerBean.id).get(0).password}"/>
+                                    </div>
+                                </div>
+                                <h:commandButton class="btn btn-primary btn-user btn-block" id="save" value="Delete Account" action="#{customerDAO.delete(customerBean.id)}" />
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <h:outputScript library="vendor" name="/jquery/jquery.min.js"/>
+    <h:outputScript library="vendor" name="/bootstrap/js/bootstrap.bundle.min.js"/>
+
+    <!-- Core plugin JavaScript-->
+    <h:outputScript library="vendor" name="/jquery-easing/jquery.easing.min.js"/>
+
+    <!-- Custom scripts for all pages-->
+    <h:outputScript library="js" name="sb-admin-2.min.js"/>
+
+</h:body>
+</html>
+

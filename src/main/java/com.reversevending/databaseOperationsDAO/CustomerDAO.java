@@ -1,6 +1,8 @@
 package com.reversevending.databaseOperationsDAO;
 
 
+
+
 import com.reversevending.domain.Customer;
 
 import com.reversevending.hibernateUtil.HibernateUtil;
@@ -269,5 +271,10 @@ public class CustomerDAO implements Serializable, Repository<Customer> {
     public Customer getCustomer()
     {
         return customer;
+    }
+
+    @Override
+    public List<Customer> getAll() {
+        return null;
     }
 }

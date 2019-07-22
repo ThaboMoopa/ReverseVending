@@ -11,6 +11,7 @@
 <f:metadata>
     <f:event type="preRenderView" listener="#{productsBean.saveProductsRecord}" />
     <f:event type="preRenderView" listener="#{customerBean.preload}" />
+    <f:event type="preRenderView" listener="#{rolesBean.preloadData}"/>
 </f:metadata>
 <h:head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -35,22 +36,22 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <h:graphicImage class="col-lg-5 d-none d-lg-block bg-register-image" id="profile" value="resources/img/login.jpg" />
+                            <h:graphicImage class="col-lg-5 d-none d-lg-block bg-register-image" id="profile" value="resources/img/login1.jpg" />
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <h:form class="user">
+                                    <h:form action="j_security_check" class="user" prependId="false">
                                         <div id="grid">
                                             <h:messages class="text-monospace text-danger text-center"  id="msgs" />
                                             <div class="form-group">
-                                                <h:inputText id="email" class="form-control form-control-user" validatorMessage="Email is invalid." required="true" requiredMessage="Email is required." aria-describedby="emailHelp" a:placeholder="Enter Email Address..." value="#{customerBean.email}" >
+                                                <h:inputText id="j_username" class="form-control form-control-user" validatorMessage="Email is invalid." required="true" requiredMessage="Email is required." aria-describedby="emailHelp" a:placeholder="Enter Email Address..." value="#{customerBean.email}" >
                                                     <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
                                                 </h:inputText>
                                             </div>
                                             <div class="form-group">
-                                                <h:inputSecret id="password" validatorMessage="Password length must be longer than 4 characters." class="form-control form-control-user" required="true" requiredMessage="Password is required." a:placeholder="Password" value="#{customerBean.password}">
+                                                <h:inputSecret id="j_password" validatorMessage="Password length must be longer than 4 characters." class="form-control form-control-user" required="true" requiredMessage="Password is required." a:placeholder="Password" value="#{customerBean.password}">
                                                 <f:validateLength minimum="4"/>
                                                 </h:inputSecret>
                                             </div>

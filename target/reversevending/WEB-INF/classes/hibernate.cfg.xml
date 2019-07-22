@@ -17,8 +17,8 @@
         <property name="hibernate.connection.password">mysqlmysql</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
-        <property name="show_sql">true</property>
-        <property name="hibernate.format_sql">true</property>
+        <property name="show_sql">false</property>
+        <property name="hibernate.format_sql">false</property>
 
         <property name="hibernate.connection.pool_size">5</property>
         <property name="hibernate.c3p0.min_size">50</property>
@@ -49,25 +49,15 @@
         <property name="cache.use_second_level_cache">true</property>
         <property name="cache.use_structured_entries">true</property>
         <property name="cache.region.factory_class">org.hibernate.cache.infinispan.InfinispanRegionFactory</property> -->
-        <!--        <mapping resource="customer.hbm.xml"/>-->
-        <!--        <mapping resource="address.hbm.xml"/>-->
-        <!--        <mapping resource="bankDetails.hbm.xml"/>-->
-        <!--        <mapping resource="transactions.hbm.xml"/>-->
-        <!--        <mapping resource="transactionLine.hbm.xml"/>-->
-        <!--        <mapping resource="products.hbm.xml"/>-->
-
+        <mapping class="com.reversevending.domain.Roles"/>
+        <mapping class="com.reversevending.domain.UserRoles"/>
         <mapping class="com.reversevending.domain.Address"/>
         <mapping class="com.reversevending.domain.BankDetails" />
         <mapping class="com.reversevending.domain.Transactions"/>
         <mapping class="com.reversevending.domain.TransactionLine"/>
         <mapping class="com.reversevending.domain.Products"/>
         <mapping class="com.reversevending.domain.Customer"/>
-        <!--        <mapping class="com.reversevending.databaseOperationsDAO.CustomerDAO"/>-->
-        <!--        <mapping class="com.reversevending.databaseOperationsDAO.ProductsDAO"/>-->
-        <!--        <mapping class="com.reversevending.databaseOperationsDAO.TransactionLineDAO"/>-->
-        <!--        <mapping class="com.reversevending.databaseOperationsDAO.TransactionsDAO"/>-->
-        <!--        <mapping class="com.reversevending.databaseOperationsDAO.AddressDAO"/>-->
-        <!--        <mapping class="com.reversevending.databaseOperationsDAO.BankDetailsDAO"/>-->
+
 
 
     </session-factory>

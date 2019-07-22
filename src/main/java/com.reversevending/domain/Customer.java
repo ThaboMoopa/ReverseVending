@@ -47,6 +47,17 @@ public class Customer implements Serializable {
     @OneToMany(mappedBy = "customer")
     private Set<Transactions> transactions;
 
+    @OneToMany(mappedBy = "customer")
+    private Set<UserRoles> roles;
+
+    public Set<UserRoles> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<UserRoles> roles) {
+        this.roles = roles;
+    }
+
     public byte[] getImage() {
         return image;
     }

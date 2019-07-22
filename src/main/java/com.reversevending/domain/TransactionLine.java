@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -96,41 +97,20 @@ public class TransactionLine implements Serializable {
 	{
 		return total; 
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		TransactionLine that = (TransactionLine) o;
+		return id == that.id;
+	}
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + quantity;
-		long temp;
-		temp = Double.doubleToLongBits(total);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((transactions == null) ? 0 : transactions.hashCode());
-		return result;
+		return Objects.hash(id);
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		TransactionLine other = (TransactionLine) obj;
-		if (id != other.id)
-			return false;
-		if (quantity != other.quantity)
-			return false;
-		if (Double.doubleToLongBits(total) != Double.doubleToLongBits(other.total))
-			return false;
-		if (transactions == null) {
-			if (other.transactions != null)
-				return false;
-		} else if (!transactions.equals(other.transactions))
-			return false;
-		return true;
-	}
-//	@Override
+	//	@Override
 //	public String toString() {
 //		return "TransactionLine [id=" + id + ", quantity=" + quantity + ", total=" + total + ", transaction="
 //				+ transactions + "]";

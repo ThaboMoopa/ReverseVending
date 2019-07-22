@@ -1,6 +1,5 @@
 package com.reversevending.repository;
 
-
 import java.util.List;
 
 public interface Repository<T> {
@@ -8,6 +7,5 @@ public interface Repository<T> {
     void update(T t);
     void delete(long id);
     T getById(long id);
-
-
+    List<T> getAll();
 }

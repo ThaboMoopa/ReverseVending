@@ -2,10 +2,7 @@ package com.reversevending.beans;
 
 import com.reversevending.databaseOperationsDAO.CustomerDAO;
 import com.reversevending.databaseOperationsDAO.TransactionsDAO;
-import com.reversevending.domain.Address;
-import com.reversevending.domain.BankDetails;
-import com.reversevending.domain.Customer;
-import com.reversevending.domain.Transactions;
+import com.reversevending.domain.*;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -55,6 +52,16 @@ public class CustomerBean implements Serializable {
 
     //@OneToMany(mappedBy = "customer")
     private Set<Transactions> transactions;
+
+    private Set<Roles> roles;
+
+    public Set<Roles> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Roles> roles) {
+        this.roles = roles;
+    }
 
     public byte[] getImage() {
         return image;

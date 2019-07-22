@@ -247,7 +247,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h:commandButton class="btn btn-primary btn-user btn-block" id="paper" value="Add" action="#{transactionLineBean.saveTransactionLineRecord(2, transactionsDAO.getTransactionID())}" />
+                                <h:commandButton disabled="#{transactionLineDAO.buttonPressedProductTwo(2)}" class="btn btn-primary btn-user btn-block" id="paper" value="Add" action="#{transactionLineBean.saveTransactionLineRecord(2, transactionsDAO.getTransactionID())}" />
 
                             </div>
 
@@ -265,7 +265,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h:commandButton class="btn btn-primary btn-user btn-block" id="plastic" value="Add" action="#{transactionLineBean.saveTransactionLineRecord(3, transactionsDAO.getTransactionID())}" />
+                                <h:commandButton disabled="#{transactionLineDAO.buttonPressedProductThree(3)}" class="btn btn-primary btn-user btn-block" id="plastic" value="Add" action="#{transactionLineBean.saveTransactionLineRecord(3, transactionsDAO.getTransactionID())}" />
                             </div>
                         </h:form>
 
@@ -280,7 +280,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h:commandButton class="btn btn-primary btn-user btn-block" id="save" value="Add" action="#{transactionLineBean.saveTransactionLineRecord(1, transactionsDAO.getTransactionID())}" />
+                                <h:commandButton disabled="#{transactionLineDAO.buttonPressedProductOne(1)}" class="btn btn-primary btn-user btn-block" id="save" value="Add" action="#{transactionLineBean.saveTransactionLineRecord(1, transactionsDAO.getTransactionID())}" />
                             </div>
                         </h:form>
 
@@ -331,14 +331,16 @@
                                         <h:outputText value="#{transactionLineDAO.totalForEachTransaction(transactionsDAO.getTransactionID())}">
                                             <f:convertNumber minFractionDigits="2"/>
                                         </h:outputText>
-
                                     </h:panelGroup>
                                     <h:panelGroup style="display:block; text-align:left">
                                         <h:outputText value="Total: "/>
                                     </h:panelGroup>
                                 </f:facet>
                             </h:dataTable>
-                            <h:commandButton id="checkout" class="btn btn-success" value="Checkout" action="checkout.xhtml" />
+                            <h:form>
+                                <h:commandButton id="checkout" class="btn btn-success" value="Checkout" action="Checkout.xhtml" />
+                            </h:form>
+
                             <!-- *******************Data tables example***************-->
                         </div>
                     </div>

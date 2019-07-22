@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -39,6 +40,8 @@ public class TransactionLineDAO implements Serializable {
             transactionLine.setTotal(dbProducts.getPrice() * transactionLine.getQuantity());
             session.save(transactionLine);
             id = transactionLine.getId();
+
+            //buttonPressed(productId);
         }
         catch(Exception e)
         {
@@ -48,34 +51,6 @@ public class TransactionLineDAO implements Serializable {
             transaction.commit();
         }
     }
-
-//    public void add(TransactionLine transactionLine,long productId, long transactionId )
-//    {
-//
-//        //System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRequestHeaderValuesMap().get("city"));
-//        try{
-//
-//                        transaction = session.beginTransaction();
-//                        Products dbProducts = (Products) session.get(Products.class, productId);
-//                        Transactions dbTransactions  = (Transactions) session.get(Transactions.class, transactionId);
-//                        transactionLine.setProducts(dbProducts);
-//                        transactionLine.setTransaction(dbTransactions);
-//                        transactionLine.setQuantity(transactionLine.getQuantity() + 1);
-//                        transactionLine.setTotal(dbProducts.getPrice() * transactionLine.getQuantity());
-//                        session.saveOrUpdate(transactionLine);
-//                        id = transactionLine.getId();
-//
-//                    }
-//
-//        catch(Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-//        finally{
-//            transaction.commit();
-//            //session.flush();
-//        }
-//    }
 
     //Delete customer from DB
     public void deleteTransactionLine(long id){
@@ -167,32 +142,40 @@ public class TransactionLineDAO implements Serializable {
     {
         TransactionLine transactionLine = getTransactionLineById(id);
         //tranLine.setId(line.getId());
-        transactionLine.getProducts();
-        transactionLine.getTransactions();
-        transactionLine.setQuantity(transactionLine.getQuantity() + 1);
-        transactionLine.setTotal(transactionLine.getQuantity() * transactionLine.getProducts().getPrice());
-        updateTransactionLine(transactionLine);
+
+            transactionLine.getProducts();
+            transactionLine.getTransactions();
+            transactionLine.setQuantity(transactionLine.getQuantity() + 1);
+            transactionLine.setTotal(transactionLine.getQuantity() * transactionLine.getProducts().getPrice());
+            updateTransactionLine(transactionLine);
+
+
     }
 
     public void updateTransactionLineRemoveButton(long id)
     {
         TransactionLine transactionLine = getTransactionLineById(id);
         //tranLine.setId(line.getId());
-        transactionLine.getProducts();
-        transactionLine.getTransactions();
-        transactionLine.setQuantity(transactionLine.getQuantity() - 1);
-        transactionLine.setTotal(transactionLine.getQuantity() * transactionLine.getProducts().getPrice());
-        updateTransactionLine(transactionLine);
+        System.out.println(transactionLine.getQuantity());
+        if(transactionLine.getQuantity() < 1)
+        {
+            System.out.println("Deleting the transaction");
+            deleteTransactionLine(transactionLine.getId());
+        }
+        else {
+            transactionLine.getProducts();
+            transactionLine.getTransactions();
+            transactionLine.setQuantity(transactionLine.getQuantity() - 1);
+            transactionLine.setTotal(transactionLine.getQuantity() * transactionLine.getProducts().getPrice());
+            updateTransactionLine(transactionLine);
+        }
     }
 
     public double totalForEachTransaction(long transaction_id)
     {
-        System.out.println("********************************");
         List<TransactionLine> transactionLine = new ArrayList<>();
         LocalDate localDates = LocalDate.now();
         Transactions dbTransactions  = (Transactions) session.get(Transactions.class, transaction_id);
-
-
 
         double total = 0.00;
         try{
@@ -214,5 +197,74 @@ public class TransactionLineDAO implements Serializable {
             transaction.commit();
         }
         return total;
+    }
+
+    //Disable button when clicked
+    public boolean buttonPressedProductOne(long productID)
+    {
+        boolean value = false;
+        try{
+            Long productId = getTransactionLineById(id).getProducts().getId();
+
+            if(productId == 1)
+                value = true;
+
+            if(getTransactionLineById(id).getQuantity() <=0)
+                value = false;
+
+            //buttonValueChange("Item added to Cart");
+        }
+        catch(Exception e)
+        {
+          System.out.println(e.getMessage());
+        }
+
+        return value;
+    }
+    //Disable button when clicked
+    public boolean buttonPressedProductTwo(Long productID)
+    {
+        boolean value = false;
+        try{
+            Long productId = getTransactionLineById(id).getProducts().getId();
+
+            if(productId == 2)
+                value = true;
+
+
+            if(getTransactionLineById(id).getQuantity() <=0)
+                value = false;
+
+            //buttonValueChange("Item added to Cart");
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        return value;
+    }
+    //Disable button when clicked
+    public boolean buttonPressedProductThree(Long productID)
+    {
+        boolean value = false;
+        try{
+            Long productId = getTransactionLineById(id).getProducts().getId();
+
+            if(productId == 3)
+                value = true;
+
+
+            if(getTransactionLineById(id).getQuantity() <=0)
+                value = false;
+
+            //buttonValueChange("Item added to Cart");
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        return value;
     }
 }

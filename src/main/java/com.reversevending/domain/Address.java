@@ -13,6 +13,7 @@ import javax.inject.Named;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="address", schema = "reversevendingmachine")
@@ -130,69 +131,18 @@ public class Address implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((city == null) ? 0 : city.hashCode());
-		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + houseNumber;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + postalCode;
-		result = prime * result + ((province == null) ? 0 : province.hashCode());
-		result = prime * result + ((street == null) ? 0 : street.hashCode());
-		return result;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Address address = (Address) o;
+		return id == address.id;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Address other = (Address) obj;
-		if (city == null) {
-			if (other.city != null)
-				return false;
-		} else if (!city.equals(other.city))
-			return false;
-		if (customer == null) {
-			if (other.customer != null)
-				return false;
-		} else if (!customer.equals(other.customer))
-			return false;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (houseNumber != other.houseNumber)
-			return false;
-		if (id != other.id)
-			return false;
-		if (postalCode != other.postalCode)
-			return false;
-		if (province == null) {
-			if (other.province != null)
-				return false;
-		} else if (!province.equals(other.province))
-			return false;
-		if (street == null) {
-			if (other.street != null)
-				return false;
-		} else if (!street.equals(other.street))
-			return false;
-		return true;
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Address [id=" + id + ", city=" + city + ", houseNumber=" + houseNumber + ", postalCode=" + postalCode
-//				+ ", province=" + province + ", street=" + street + ", description=" + description + ", customer="
-//				+ customer + "]";
-//	}
 
 
 }

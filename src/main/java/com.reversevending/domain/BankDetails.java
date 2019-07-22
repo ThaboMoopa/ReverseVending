@@ -13,6 +13,7 @@ import javax.inject.Named;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="bank_details",schema = "reversevendingmachine")
@@ -58,9 +59,7 @@ public class BankDetails implements Serializable {
 	 * Setters and getters for the bank details attributes
 	 * @return accountNumber 
 	 */
-	
-	
-	
+
 	public long getAccountNumber() {
 		return accountNumber;
 	}
@@ -101,49 +100,16 @@ public class BankDetails implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (accountNumber ^ (accountNumber >>> 32));
-		result = prime * result + (int) (branchCode ^ (branchCode >>> 32));
-		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		BankDetails that = (BankDetails) o;
+		return id == that.id;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		BankDetails other = (BankDetails) obj;
-		if (accountNumber != other.accountNumber)
-			return false;
-		if (branchCode != other.branchCode)
-			return false;
-		if (customer == null) {
-			if (other.customer != null)
-				return false;
-		} else if (!customer.equals(other.customer))
-			return false;
-		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
-//	@Override
-//	public String toString() {
-//		return "BankDetails [id=" + id + ", accountNumber=" + accountNumber + ", branchCode=" + branchCode + ", name="
-//				+ name + ", customer=" + customer + "]";
-//	}
-////
 }

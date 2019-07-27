@@ -68,7 +68,7 @@ public class BankDetailsBean implements Serializable {
 	public String redirect()
 	{
 		saveBankDetailsRecord();
-		return "homepage.xhtml";
+		return "login.xhtml";
 	}
 
 	public void saveBankDetailsRecord()

@@ -106,7 +106,24 @@ public class BankDetailsDAO implements Serializable {
         finally{
             transaction.commit();
         }
-
-
     }
+    public BankDetails getBankDetailsByCustomerId(long customerId)
+    {
+        BankDetails uniqueBankDetails = new BankDetails();
+        try{
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("FROM BankDetails WHERE customer.id = :customerId").setParameter("customerId", customerId);
+            uniqueBankDetails = (BankDetails) query.uniqueResult();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally{
+            transaction.commit();
+        }
+
+        return uniqueBankDetails;
+    }
+
 }

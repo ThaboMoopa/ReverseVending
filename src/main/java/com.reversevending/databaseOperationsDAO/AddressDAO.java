@@ -33,7 +33,6 @@ public class AddressDAO implements Serializable {
             Customer dbCustomer = (Customer) session.get(Customer.class, customerDAO.getCustomerID());
             address.setCustomer(dbCustomer);
             session.save(address);
-
         }
         catch(Exception e)
         {
@@ -66,9 +65,9 @@ public class AddressDAO implements Serializable {
     //Read Customer details
     public List<Address> getAddressById(long id){
 
-        Address particularAddress = new Address();
+            Address particularAddress = new Address();
 
-        List<Address> particularAddressList = new ArrayList<>();
+            List<Address> particularAddressList = new ArrayList<>();
 
         try{
             transaction = session.beginTransaction();
@@ -88,7 +87,6 @@ public class AddressDAO implements Serializable {
         {
             transaction.commit();
         }
-
         return particularAddressList;
     }
 
@@ -107,7 +105,22 @@ public class AddressDAO implements Serializable {
         finally{
             transaction.commit();
         }
+    }
 
-
+    public Address getAddressByCustomerID(long customerId)
+    {
+            Address uniqueAddress = new Address();
+        try{
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("FROM Address WHERE customer.id= :customerId").setParameter("customerId", customerId);
+            uniqueAddress = (Address) query.getSingleResult();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            transaction.commit();
+        }
+            return uniqueAddress;
     }
 }

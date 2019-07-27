@@ -26,6 +26,7 @@ public class TransactionsDAO implements Serializable {
 
     public Long getTransactionID()
     {
+        System.out.println("*********************Transaction ID " + id);
         return id;
     }
 

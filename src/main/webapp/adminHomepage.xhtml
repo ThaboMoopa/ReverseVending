@@ -7,8 +7,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-
-
     <h:head>
 
         <title>Homepage</title>
@@ -18,9 +16,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <meta name="description" content=""/>
         <meta name="author" content="" />
-        <link type="text/css" rel="stylesheet" href="../resources/css/sb-admin-2.css?ln=css"/>
-        <link type="text/css" href="../resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"/>
-        <link href="../resources/js/googleFonts.scss" rel="stylesheet" />
+        <link type="text/css" rel="stylesheet" href="resources/css/sb-admin-2.css?ln=css"/>
+        <link type="text/css" href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"/>
+        <link href="resources/js/googleFonts.scss" rel="stylesheet" />
 
     </h:head>
 
@@ -46,7 +44,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="homepage.xhtml">
+            <a class="nav-link" href="adminHomepage.xhtml">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -68,10 +66,8 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Customer Components:</h6>
-                    <a class="collapse-item" href="../CustomerRegister.xhtml">Add</a>
-                    <a class="collapse-item" href="../adminEditCustomer.xhtml">Edit</a>
-                    <a class="collapse-item" href="../adminDeleteCustomer.xhtml">Delete </a>
-                    <a class="collapse-item" href="../adminViewCustomer.xhtml">View</a>
+                    <a class="collapse-item" href="CustomerRegister.xhtml">Add</a>
+                    <a class="collapse-item" href="adminViewCustomer.xhtml">View</a>
                 </div>
             </div>
         </li>
@@ -88,7 +84,7 @@
                     <a class="collapse-item" href="utilities-color.html">Add</a>
                     <a class="collapse-item" href="utilities-border.html">Edit</a>
                     <a class="collapse-item" href="utilities-animation.html">Delete</a>
-                    <a class="collapse-item" href="homepage.xhtml">View</a>
+                    <a class="collapse-item" href="adminHomepage.xhtml">View</a>
                 </div>
             </div>
         </li>
@@ -109,35 +105,6 @@
                 </div>
             </div>
         </li>
-
-        <!-- Divider -->
-<!--        <hr class="sidebar-divider">-->
-
-        <!-- Heading -->
-        <h:outputLabel class="sidebar-heading">
-            Addons
-        </h:outputLabel>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
-            </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="login.html">Login</a>
-                    <a class="collapse-item" href="register.html">Register</a>
-                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="404.html">404 Page</a>
-                    <a class="collapse-item" href="blank.html">Blank Page</a>
-                </div>
-            </div>
-        </li>
-
     </ul>
     <!-- End of Sidebar -->
 
@@ -196,7 +163,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <h:outputLabel class="mr-2 d-none d-lg-inline text-gray-600 small" value="#{customerDAO.getCustomer().name}"/>
-                            <h:graphicImage class="img-profile rounded-circle" value="../resources/img/profile.png" />
+                            <h:graphicImage class="img-profile rounded-circle" value="resources/img/profile.png" />
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -241,7 +208,7 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <!--                           *******************Data tables example***************-->
-                            <h:dataTable value="#{transactionLineDAO.populateTable()}" var="transactionLines" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <h:dataTable value="#{transactionLineDAO.populateTableAdmin()}" var="transactionLines" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <h:column>
                                     <f:facet name="header">id</f:facet>
                                     #{transactionLines.id}

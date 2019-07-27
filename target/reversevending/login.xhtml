@@ -55,15 +55,13 @@
                                                 <f:validateLength minimum="4"/>
                                                 </h:inputSecret>
                                             </div>
-
-
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox small">
                                                     <input type="checkbox" class="custom-control-input" id="customCheck" />
                                                     <label class="custom-control-label" for="customCheck">Remember Me</label>
                                                 </div>
                                             </div>
-                                            <h:commandButton id="login" process="@all" update="@grid" class="btn btn-primary btn-user btn-block" value="Login" action="#{customerBean.redirectToHomePage}" />
+                                            <h:commandButton id="login" process="@all" update="@grid" class="btn btn-primary btn-user btn-block" value="Login" action="#{customerBean.redirectToHomePage()}" />
                                             </div>
                                     </h:form>
 

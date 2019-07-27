@@ -83,9 +83,6 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Transactions:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Add</a>
-                        <a class="collapse-item" href="utilities-border.html">Edit</a>
-                        <a class="collapse-item" href="utilities-animation.html">Delete</a>
                         <a class="collapse-item" href="homepage.xhtml">View</a>
                     </div>
                 </div>
@@ -104,34 +101,6 @@
                         <a class="collapse-item" href="utilities-border.html">Edit</a>
                         <a class="collapse-item" href="utilities-animation.html">Delete</a>
                         <a class="collapse-item" href="utilities-other.html">View</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-    <!--        <hr class="sidebar-divider">-->
-
-            <!-- Heading -->
-            <h:outputLabel class="sidebar-heading">
-                Addons
-            </h:outputLabel>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
                     </div>
                 </div>
             </li>
@@ -295,7 +264,7 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <!--                           *******************Data tables example***************-->
-                            <h:dataTable value="#{transactionLineDAO.populateTable()}" var="transactionLines" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <h:dataTable value="#{transactionLineDAO.populateTable(transactionsDAO.getTransactionID())}" var="transactionLines" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <h:column>
                                     <f:facet name="header">Product Name</f:facet>
                                     #{transactionLines.products.name}
@@ -328,7 +297,7 @@
                                 </h:column>
                                 <f:facet name="footer">
                                     <h:panelGroup style="display:block; text-align:right">
-                                        <h:outputText value="#{transactionLineDAO.totalForEachTransaction(transactionsDAO.getTransactionID())}">
+                                        <h:outputText value=" R #{transactionLineDAO.totalForEachTransaction(transactionsDAO.getTransactionID())}">
                                             <f:convertNumber minFractionDigits="2"/>
                                         </h:outputText>
                                     </h:panelGroup>
@@ -338,10 +307,8 @@
                                 </f:facet>
                             </h:dataTable>
                             <h:form>
-                                <h:commandButton id="checkout" class="btn btn-success" value="Print Reciept" action="Checkout.xhtml" />
+                                <h:commandButton id="checkout" class="btn btn-success" value="Checkout" disabled="#{homepageBean.checkOutButtonDisable(transactionsDAO.getTransactionID())}" action="Checkout.xhtml" />
                             </h:form>
-
-                            <!-- *******************Data tables example***************-->
                         </div>
                     </div>
                 </div>

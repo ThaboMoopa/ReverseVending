@@ -83,9 +83,6 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Transactions:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Add</a>
-                        <a class="collapse-item" href="utilities-border.html">Edit</a>
-                        <a class="collapse-item" href="utilities-animation.html">Delete</a>
                         <a class="collapse-item" href="homepage.xhtml">View</a>
                     </div>
                 </div>
@@ -107,35 +104,6 @@
                     </div>
                 </div>
             </li>
-
-            <!-- Divider -->
-            <!--        <hr class="sidebar-divider">-->
-
-            <!-- Heading -->
-            <h:outputLabel class="sidebar-heading">
-                Addons
-            </h:outputLabel>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -227,7 +195,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Confirm Cart</h1>
                         <!--                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
                     </div>
                 </div>
@@ -239,7 +207,7 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <!--                           *******************Data tables example***************-->
-                            <h:dataTable value="#{transactionLineDAO.populateTable()}" var="transactionLines" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <h:dataTable value="#{transactionLineDAO.populateTable(transactionsDAO.getTransactionID())}" var="transactionLines" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <h:column>
                                     <f:facet name="header">Product Name</f:facet>
                                     #{transactionLines.products.name}
@@ -282,7 +250,10 @@
                                     </h:panelGroup>
                                 </f:facet>
                             </h:dataTable>
-                            <h:commandButton id="checkout" class="btn btn-success" value="Print Receipt" action="checkout.xhtml" />
+                            <h:form>
+                                <h:commandButton id="checkout" class="btn btn-success" value="Print Receipt" action="#{pdfReceipt.printReceipt(customerDAO.getCustomerID(), transactionsDAO.getTransactionById(transactionsDAO.getTransactionID()))}"  />
+                            </h:form>
+
                             <!-- *******************Data tables example***************-->
                         </div>
                     </div>

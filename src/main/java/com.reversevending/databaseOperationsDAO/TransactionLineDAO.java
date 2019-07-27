@@ -25,6 +25,7 @@ public class TransactionLineDAO implements Serializable {
     private static Session session = HibernateUtil.getSessionFactory().openSession();
     private ProductsDAO productsDAO;
     private static long id;
+    private static TransactionsDAO transactionDAO = new TransactionsDAO();
 
     //AddCustomer to the DB
     public void addTransactionLine(TransactionLine transactionLine, long productId, long transactionId)
@@ -114,14 +115,14 @@ public class TransactionLineDAO implements Serializable {
     }
 
     //Find All TransactionLine
-    public List<TransactionLine> populateTable()
+    public List<TransactionLine> populateTable(long transactionId)
     {
 
         List<TransactionLine> particularTransactionLineList = new ArrayList<>();
 
         try{
             transaction = session.beginTransaction();
-            Query query = session.createQuery("FROM TransactionLine ");
+            Query query = session.createQuery("FROM TransactionLine WHERE transactions.id= :transactionId").setParameter("transactionId" ,transactionId);
             particularTransactionLineList =  query.list();
 
             //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("findProductById", id);
@@ -184,10 +185,10 @@ public class TransactionLineDAO implements Serializable {
             //Query query = session.createQuery("FROM TransactionLine WHERE transactions.id= :transaction_id").setParameter("transaction_id", transaction_id);
             Query query = session.createSQLQuery(string);
             //transactionLine =  query.list();
-            total = (Double) query.uniqueResult();
-
-            System.out.println("Total Amount of products = "  + total);
-
+            if(query.uniqueResult() != null)
+            {
+                total = (Double) query.uniqueResult();
+            }
         }
         catch(Exception e)
         {
@@ -204,9 +205,9 @@ public class TransactionLineDAO implements Serializable {
     {
         boolean value = false;
         try{
-            Long productId = getTransactionLineById(id).getProducts().getId();
+            productID = getTransactionLineById(id).getProducts().getId();
 
-            if(productId == 1)
+            if(productID == 1)
                 value = true;
 
             if(getTransactionLineById(id).getQuantity() <=0)
@@ -226,9 +227,9 @@ public class TransactionLineDAO implements Serializable {
     {
         boolean value = false;
         try{
-            Long productId = getTransactionLineById(id).getProducts().getId();
+            productID = getTransactionLineById(id).getProducts().getId();
 
-            if(productId == 2)
+            if(productID == 2)
                 value = true;
 
 
@@ -249,9 +250,9 @@ public class TransactionLineDAO implements Serializable {
     {
         boolean value = false;
         try{
-            Long productId = getTransactionLineById(id).getProducts().getId();
+            productID = getTransactionLineById(id).getProducts().getId();
 
-            if(productId == 3)
+            if(productID == 3)
                 value = true;
 
 
@@ -267,4 +268,32 @@ public class TransactionLineDAO implements Serializable {
 
         return value;
     }
+    //Find All TransactionLine
+    public List<TransactionLine> populateTableAdmin()
+    {
+
+        List<TransactionLine> particularTransactionLineList = new ArrayList<>();
+
+        try{
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("FROM TransactionLine");
+            particularTransactionLineList =  query.list();
+
+            //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("findProductById", id);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            transaction.commit();
+        }
+
+        return particularTransactionLineList;
+    }
+
+
+
+
 }

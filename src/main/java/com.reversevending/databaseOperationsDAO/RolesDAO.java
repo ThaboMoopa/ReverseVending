@@ -27,12 +27,12 @@ public class RolesDAO implements Repository<Roles> {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
 
     }
 
     @Override
-    public Roles getById(long id) {
+    public Roles getById(Long id) {
         return null;
     }
 

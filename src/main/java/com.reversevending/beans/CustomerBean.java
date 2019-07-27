@@ -172,33 +172,37 @@ public class CustomerBean implements Serializable {
 	public String redirectToHomePage()
 	{
 		String log = null;
-		System.out.println("***********Result before login******" + login());
-		login();
-		if(!login().equals("failure"))
+		if(login() !=null )
 		{
-		    //System.out.println(id);
-			log = "homepage.xhtml";
-//			customerDAO = new CustomerDAO();
-//			customerDAO.addTransactions(id);
+		    System.out.println("************ In function******");
+		    if(login().getEmail().equals("admin@admin.co.za") && login().getName().equals("admin"))
+            {
+                log = "adminHomepage.xhtml";
+                TransactionsDAO transactionsDAO = new TransactionsDAO();
+                transactionsDAO.addTransactions(customerDAO.getCustomerID());
+            }
+		    else
+            {
+                log = "homepage.xhtml";
+                TransactionsDAO transactionsDAO = new TransactionsDAO();
+                transactionsDAO.addTransactions(customerDAO.getCustomerID());
+            }
 
-			TransactionsDAO transactionsDAO = new TransactionsDAO();
-			transactionsDAO.addTransactions(customerDAO.getCustomerID());
-            //TransactionsBean transactionsBean = new TransactionsBean();
-            //transactionsBean.saveTransactionRecord(id);
 		}
 		else
 			log = "login.xhtml";
+
+		System.out.println("***********" + log);
 		return log;
 			//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No user with that details can be found"))
 	}
 
 
 
-	public String login()
+	public Customer login()
 	{
 		customerDAO = new CustomerDAO();
-		//customer = new Customer();
-		String result = customerDAO.login(email, password);
+		Customer result = customerDAO.login(email, password);
 		return result;
 	}
 
@@ -216,14 +220,6 @@ public class CustomerBean implements Serializable {
         customerDAO = new CustomerDAO();
         customerDAO.delete(customer.getId());
     }
-
-//    public List<Customer> readCustomer()
-//    {
-//        System.out.println("Reading customer by Id");
-//        customerDAO = new CustomerDAO();
-//        customerList = customerDAO.getById(id);
-//        return customerList;
-//    }
 
     public void updateCustomerRecord()
     {

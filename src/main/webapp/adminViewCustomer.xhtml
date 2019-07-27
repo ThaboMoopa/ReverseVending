@@ -7,8 +7,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-
-
 <h:head>
 
     <title>Customers</title>
@@ -261,6 +259,12 @@
                                     <h:column>
                                         <f:facet name="header">Email</f:facet>
                                         #{customers.email}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Edit</f:facet>
+                                        <h:form>
+                                            <h:commandButton class="btn btn-primary" value="Edit" action="#{customerDAO.editCustomer(customers.id)}" />
+                                        </h:form>
                                     </h:column>
                                 </h:dataTable>
                                 <!-- *******************Data tables example***************-->

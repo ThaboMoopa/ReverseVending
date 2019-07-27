@@ -1,5 +1,6 @@
 package com.reversevending;
 
+import com.reversevending.databaseOperationsDAO.BankDetailsDAO;
 import com.reversevending.domain.Address;
 import com.reversevending.domain.BankDetails;
 import com.reversevending.domain.Customer;
@@ -14,7 +15,11 @@ public class TestBankDetails {
     public void crud() {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
-        create(session);
+        //create(session);
+
+        BankDetailsDAO dao = new BankDetailsDAO();
+        BankDetails bank = dao.getBankDetailsByCustomerId(107);
+        System.out.println(bank);
         //read(session);
 
         //update(session);

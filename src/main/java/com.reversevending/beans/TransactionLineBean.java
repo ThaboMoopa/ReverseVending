@@ -80,13 +80,13 @@ public class TransactionLineBean implements Serializable {
 
     //Move to Controller
 	public List<TransactionLine> getTransactionsLineList() {
-		if(transactionLineDAO.populateTable().isEmpty())
+		if(transactionLineDAO.populateTable(transactions.getId()).isEmpty())
 		{
 			transactionsLineList = null;
 		}
 		else
 		{
-			transactionsLineList = transactionLineDAO.populateTable();
+			transactionsLineList = transactionLineDAO.populateTable(transactions.getId());
 		}
 
 		return transactionsLineList;
@@ -99,7 +99,7 @@ public class TransactionLineBean implements Serializable {
 	public String redirect()
 	{
 		//saveTransactionLineRecord();
-		return "homepage.xhtml";
+		return "adminHomepage.xhtml";
 	}
 
 	public void saveTransactionLineRecord(long productId, long transactionId)

@@ -143,6 +143,17 @@ public class Address implements Serializable {
 		return Objects.hash(id);
 	}
 
-
-
+	@Override
+	public String toString() {
+		return "Address{" +
+				"id=" + id +
+				", city='" + city + '\'' +
+				", houseNumber=" + houseNumber +
+				", postalCode=" + postalCode +
+				", province='" + province + '\'' +
+				", street='" + street + '\'' +
+				", description='" + description + '\'' +
+				", customer=" + customer.toString() +
+				'}';
+	}
 }

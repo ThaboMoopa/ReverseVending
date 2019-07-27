@@ -2,6 +2,7 @@ package com.reversevending.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
 
@@ -150,6 +151,18 @@ public class Customer implements Serializable {
         return Objects.hash(id);
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", contact='" + contact + '\'' +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", surname='" + surname + '\'' +
+                ", image=" + Arrays.toString(image) +
+                '}';
+    }
 }
 
 //    @Override

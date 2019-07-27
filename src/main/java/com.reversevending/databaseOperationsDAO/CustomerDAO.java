@@ -80,7 +80,7 @@ public class CustomerDAO implements Serializable, Repository<Customer> {
     }
 
     @Override
-    public Customer getById(long id) {
+    public Customer getById(Long id) {
         Customer particularCustomer = new Customer();
 
         try{
@@ -88,12 +88,12 @@ public class CustomerDAO implements Serializable, Repository<Customer> {
             Query query = session.createQuery("FROM Customer WHERE id= :customer_id").setParameter("customer_id", id);
             particularCustomer = (Customer) query.uniqueResult();
             //particularCustomerList = query.list();
-            System.out.println(particularCustomer.getPassword());
+            //System.out.println(particularCustomer.getPassword());
 
             System.out.println("Student with Id " + id + " is successfully fetched from db");
 
             //XHTML reponse Text
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("findCustomerById", id);
+           // FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("findCustomerById", id);
         }
         catch(Exception e)
         {
@@ -123,7 +123,7 @@ public class CustomerDAO implements Serializable, Repository<Customer> {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         try{
             transaction = session.beginTransaction();
             Customer custId = (Customer) session.load(Customer.class, new Long(id));
@@ -142,7 +142,7 @@ public class CustomerDAO implements Serializable, Repository<Customer> {
     }
 
     //Login to the
-    public String login(String email, String password)
+    public Customer login(String email, String password)
     {
             String result = "failure";
         try{
@@ -156,14 +156,11 @@ public class CustomerDAO implements Serializable, Repository<Customer> {
                     {
                         System.out.println("It matches");
                         customer = particularCustomer;
-                        result = particularCustomer.getName() + " " + particularCustomer.getId();
                         id = customer.getId();
-                        result = "true";
                     }
                     else //(particularCustomer == null )
                     {
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Account not be found, register!"));
-                        result = "failure";
                     }
             }
             catch(Exception e)
@@ -175,7 +172,7 @@ public class CustomerDAO implements Serializable, Repository<Customer> {
                 transaction.commit();
 
             }
-            return result;
+            return customer;
         }
 
     public String logout() {
@@ -213,8 +210,6 @@ public class CustomerDAO implements Serializable, Repository<Customer> {
                 transaction.commit();
             }
         }
-
-
     }
 
     public List<Customer> readData(String name) {
@@ -276,5 +271,24 @@ public class CustomerDAO implements Serializable, Repository<Customer> {
     @Override
     public List<Customer> getAll() {
         return null;
+    }
+
+
+    public String editCustomer(Long customerID)
+    {
+        System.out.println("******* In function******");
+        id = customerID;
+        return "adminEditCustomer.xhtml";
+//        try{
+//            System.out.println("(((((((((((((" + customerID);
+//            redirect();
+//
+//        }
+//        catch(Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//
+//        return redirect();
     }
 }

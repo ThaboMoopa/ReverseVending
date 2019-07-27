@@ -39,7 +39,7 @@
                             <h:form class="user">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <h:inputText class="form-control form-control-user" a:placeholder="Enter account id" id="id" value="#{customerBean.id}">
+                                        <h:inputText class="form-control form-control-user" a:placeholder="Enter account id" id="id" value="#{customerBean.id = customerDAO.getCustomerID()}">
                                             <p:ajax event="keyup" update="name,surname,email,contact,password" ></p:ajax>
                                         </h:inputText>
                                     </div>
@@ -55,7 +55,7 @@
                                 <div class="form-group row">
 <!--                                <div class="form-group">-->
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <h:inputText class="form-control form-control-user" readonly="true" a:placeholder="email" id="email" value="#{customerDAO.getById(customerBean.id).email}" />
+                                    <h:inputText class="form-control form-control-user" readonly="true" a:placeholder="email" disabled="#{homepageBean.userLoggedIn(customerDAO.getCustomerID())}" id="email" value="#{customerDAO.getById(customerBean.id).email}" />
                                 </div>
                                     <div class="col-sm-6">
                                         <h:outputText class="h6 text-gray-900 mb-4">Image upload</h:outputText><p:fileUpload value="" mode="simple"/>
@@ -66,7 +66,7 @@
                                         <h:inputText class="form-control form-control-user" a:placeholder="contact" id="contact" value="#{customerDAO.getById(customerBean.id).contact}" />
                                     </div>
                                     <div class="col-sm-6">
-                                        <h:inputText class="form-control form-control-user" a:placeholder="password" id="password" value="#{customerDAO.getById(customerBean.id).password}"/>
+                                        <h:inputText class="form-control form-control-user" a:placeholder="password" disabled="#{homepageBean.userLoggedIn(customerDAO.getCustomerID())}" id="password" value="#{customerDAO.getById(customerBean.id).password}"/>
                                     </div>
                                 </div>
                                 <h:commandButton class="btn btn-primary btn-user btn-block" id="save" value="Edit Account" action="#{customerBean.updateCustomerRecord}" />

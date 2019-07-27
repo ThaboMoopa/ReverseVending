@@ -1,5 +1,6 @@
 package com.reversevending;
 
+import com.reversevending.databaseOperationsDAO.AddressDAO;
 import com.reversevending.domain.Address;
 import com.reversevending.domain.Customer;
 import org.hibernate.Session;
@@ -12,7 +13,12 @@ public class TestAddress {
     public void crud() {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
-        create(session);
+       // create(session);
+
+        AddressDAO addressDAO = new AddressDAO();
+
+        Address address =  addressDAO.getAddressByCustomerID(107);
+        System.out.println(address.getHouseNumber());
         //read(session);
 
         //update(session);
@@ -54,4 +60,6 @@ public class TestAddress {
         session.save(address2);
         session.getTransaction().commit();
     }
+
+
 }

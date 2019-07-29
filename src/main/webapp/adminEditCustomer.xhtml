@@ -69,7 +69,7 @@
                                         <h:inputText class="form-control form-control-user" a:placeholder="password" disabled="#{homepageBean.userLoggedIn(customerDAO.getCustomerID())}" id="password" value="#{customerDAO.getById(customerBean.id).password}"/>
                                     </div>
                                 </div>
-                                <h:commandButton class="btn btn-primary btn-user btn-block" id="save" value="Edit Account" action="#{customerBean.updateCustomerRecord}" />
+                                <h:commandButton class="btn btn-primary btn-user btn-block" id="save" value="Edit Account" action="#{customerBean.updateCustomerRecord()}" />
                             </h:form>
                         </div>
                     </div>

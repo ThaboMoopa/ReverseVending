@@ -221,12 +221,16 @@ public class CustomerBean implements Serializable {
         customerDAO.delete(customer.getId());
     }
 
-    public void updateCustomerRecord()
+    public String updateCustomerRecord()
     {
-        System.out.println("Updating student record");
+        String redirect = "adminViewCustomer.xhtml";
+
         customerDAO = new CustomerDAO();
         customerDAO.update(new Customer(id, contact,name, email, password, surname));
+        return redirect;
+
     }
+
     public void logout()
 	{
 		customerDAO = new CustomerDAO();
@@ -238,8 +242,8 @@ public class CustomerBean implements Serializable {
     {
         customerDAO = new CustomerDAO();
         customerDAO.preloadData();
-        System.out.println("Data preloaded");
     }
+
 
     public String isEmailAvailable()
 	{

@@ -39,7 +39,6 @@ public class CustomerDAO implements Serializable, Repository<Customer> {
             transaction = session.beginTransaction();
             session.save(customer);
             id = customer.getId();
-            System.out.println("LATEST ID = " + id);
         }
         catch(Exception e)
         {
@@ -63,7 +62,6 @@ public class CustomerDAO implements Serializable, Repository<Customer> {
             if(particularCustomer == null)
             {
                result = "success";
-               System.out.println("Email does not exist");
             }
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Email already exists!"));
 
@@ -87,8 +85,6 @@ public class CustomerDAO implements Serializable, Repository<Customer> {
             transaction = session.beginTransaction();
             Query query = session.createQuery("FROM Customer WHERE id= :customer_id").setParameter("customer_id", id);
             particularCustomer = (Customer) query.uniqueResult();
-            //particularCustomerList = query.list();
-            //System.out.println(particularCustomer.getPassword());
 
             System.out.println("Student with Id " + id + " is successfully fetched from db");
 
@@ -112,6 +108,7 @@ public class CustomerDAO implements Serializable, Repository<Customer> {
         try{
             transaction = session.beginTransaction();
             session.update(customer);
+            session.clear();
         }
         catch(Exception e)
         {
@@ -119,7 +116,9 @@ public class CustomerDAO implements Serializable, Repository<Customer> {
         }
         finally{
             transaction.commit();
+
         }
+        System.out.println("%%%%%%%%%%%%%%%");
     }
 
     @Override

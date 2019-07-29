@@ -39,7 +39,7 @@
                             <h:form class="user">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <h:inputText class="form-control form-control-user" a:placeholder="Enter account id" id="id" value="#{customerBean.id = customerDAO.getCustomerID()}">
+                                        <h:inputText class="form-control form-control-user" a:placeholder="Enter account id" id="id" value="#{customerBean.id}">
                                             <p:ajax event="keyup" update="name,surname,email,contact,password" ></p:ajax>
                                         </h:inputText>
                                     </div>
@@ -69,7 +69,7 @@
                                         <h:inputText class="form-control form-control-user" a:placeholder="password" disabled="#{homepageBean.userLoggedIn(customerDAO.getCustomerID())}" id="password" value="#{customerDAO.getById(customerBean.id).password}"/>
                                     </div>
                                 </div>
-                                <h:commandButton class="btn btn-primary btn-user btn-block" id="save" value="Edit Account" action="#{customerBean.updateCustomerRecord}" />
+                                <h:commandButton class="btn btn-primary btn-user btn-block" id="save" value="Edit Account" action="#{customerBean.updateCustomerRecord()}" />
                             </h:form>
                         </div>
                     </div>
